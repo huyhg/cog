@@ -1,0 +1,126 @@
+# A sample YAML template/schema for autogen.yaml.
+
+# Single VM is the only type that autogen currently supports.
+singleVm:
+
+  # List of VM images. Typically only 1 entry here,
+  # but more than one can be specified, in which case
+  # the user can pick a flavor/version for deploying.
+  images:
+    - project: ?  # Image project name, e.g. cognosys-public
+      name: ?     # Image name.
+      label: ?    # Needed only if there are more than one image.
+                  # Typically human readable version number.
+    - project: ?  # Image project name.
+      name: ?     # Image name.
+      label: ?    # Typically human readable version number.
+
+  machineType:
+    defaultMachineType:
+      gceMachineType: f1-micro
+    minimum:       # Optional.
+      cpu: 2       # Optional integer.
+      ram_gb: 1.7  # Optional float.
+
+  bootDisk:
+    diskSize:                   # All values in integers.
+      defaultSizeGb: 5
+      minSizeGb: 5              # Optional.
+    diskType:
+      defaultType: pd-standard  # Other values: pd-ssd
+
+  # IP forwarding is optional.
+  # To enable IP forwarding, use:
+  ipForwarding: {}
+  # Or to enable IP forwarding but turn it off by default, use:
+  ipForwarding:
+    defaultOff: true
+
+  # Optional list of firewall rules.
+  firewallRules:
+    - protocol: TCP or UDP
+      port: '80'         # The quotes are required for integers--this
+                         # is parsed as a string.
+                         # Port range can also be specified, e.g. '80-90'.
+      defaultOff: false  # Optional. Set to true if firewall rule should
+                         # show but is unchecked by default.
+    - protocol: TCP
+      port: '443'
+    - protocol: TCP
+      port: '8080-8090'
+
+  # Optionally defines the components of the site URL.
+  # Instance IP as host/domain is implied.
+  # The URL components are:
+  #   https   ://{instance_ip}:8080  /dashboard ?a=b&c=d
+  #   |                        |      |          |
+  #   <scheme>                <port>  <path>     <query>
+  siteUrl:
+    scheme: HTTP or HTTPS
+    port: 8080        # Optional. This is an int.
+    path: dashboard   # Optional.
+    query: 'a=b&c=d'  # Optional.
+
+  # Optionally defines the components of the admin URL.
+  # Instance IP as host/domain is implied.
+  adminUrl:  # Similar to siteUrl
+    scheme: HTTPS
+    port: 8080        # Optional. This is an int.
+    path: admin       # Optional.
+    query: 'a=b&c=d'  # Optional.
+
+  # Optionally defines 1 or more passwords.
+  passwords:
+    # metadataKey defines the name of the metadata item on the
+    # VM instance which will contain the generated password values.
+    - metadataKey: my-metadata-key  # Must be unique among passwords.
+      length: 8
+      allowSpecialChars: false  # Optional. Defaults to false.
+      username: admin
+      displayLabel: Admin  # Required if multiple passwords.
+                           # For the one password case, defaults to
+                           # 'Admin' if not specified.
+    - metadataKey: mysql-password
+      length: 8
+      allowSpecialChars: false
+      username: mysql-username
+      displayLabel: MySQL
+
+  # Optionally defines additional GCP API scopes on the VM.
+  gcpAuthScopes:
+    - scope: COMPUTE_READONLY
+      # Other scopes:
+      #  - CLOUD_PLATFORM_READONLY: read only access to all GCP
+      #  - CLOUD_PLATFORM: access to **ALL** GCP
+      #  - COMPUTE: access to Compute
+      defaultOff: false  # Optional. Set to true if the permission should
+                         # show but is unchecked by default.
+
+  # Optionally overrides the default for extern IP address.
+  externalIp:
+    defaultType: NONE or EPHERMERAL
+
+  # Optionally defines post-deployment action items.
+  postDeploy:
+    actionItems:
+      - heading: You should do this  # No HTML markups. Max 64 chars.
+        # At least one of 'description' or 'snippet' must be specified.
+        description: This is the detail of what you should docs
+        snippet: Code snippet        # No HTML markups.
+
+  # Optionally defines additional static metadata items
+  # on the VM instance.
+  gceMetadataItems:
+    - key: admin-user
+      value: admin@local
+
+  # If your VM does not integrate with software status watcher, use:
+  applicationStatus:
+    type: NONE
+  # Otherwise, specify the following to create a waiter with a timeout.
+  # The VM is responsible for signaling the waiter when it is done
+  # starting up.
+  applicationStatus:
+    type: WAITER
+    waiter:
+      waiterTimeoutSecs: 300
