@@ -124,3 +124,83 @@ singleVm:
     type: WAITER
     waiter:
       waiterTimeoutSecs: 300
+
+  # Optionally defines additional custom input fields for the user to
+  # configure at deployment time. The entered values can be passed on
+  # to the VM via metadata items.
+  deployInput:
+    # One or more sections. Sections with the same placement appear
+    # in the order they are listed.
+    sections:
+        # MAIN: The predefined top-most section. Zone field is in this section.
+        # CUSTOM_TOP: Placed right below the main section, and above other
+        #             predefined sections like networking.
+        # CUSTOM_BOTTOM: Placed after all other sections.
+      - placement: MAIN or CUSTOM_TOP or CUSTOM_BOTTOM
+        name: MY_CUSTOM_SECTION        # Required if placement is CUSTOM_*.
+        title: My custom section       # Required if placement is CUSTOM_*.
+        description: Optional section details.
+        tooltip: Optional tooltip
+        # One or more fields. Fields appear within the section in the order
+        # they are listed.
+        fields:
+          - name: field-name
+            title: Field title
+            description: Optional description.
+            tooltip: Optional tooltip.
+            level: 0 or 1              # 1 is for advanced, hidden by default.
+            required: true or false    # Whether the field is mandatory.
+            output:
+              # Entered value is passed on to the VM under this metadata item
+              # key, where the value is converted into string.
+              gceVmMetadataKey: metadata-item-key
+
+            # Exactly one and only one of the following types must be specified.
+            booleanCheckbox:
+              defaultValue: true or false
+            groupedBooleanCheckBox:
+              defaultValue: true or false
+              # The first groupedBooleanCheckbox in the group must define
+              # the following displayGroup.
+              displayGroup:
+                name: BOOLEAN_GROUP_NAME
+                title: Boolean group title
+                description: Optional description.
+                tooltip: Optional tooltip
+            integerBox:
+              defaultValue:          # Omit if no default value is desired.
+                value: 10
+              placeholder: Optional
+              validation:
+                description: Error message if validation fails
+                min:                 # Omit if no min.
+                  value: 10
+                max:                 # Omit if no max.
+                  value: 100
+            integerDropdown:
+              values:
+                - 1
+                - 2
+              defaultValueIndex:     # Omit if no default selection is desired.
+                value: 0
+              valueLabels:
+                1: One
+                2: Two
+            stringBox:
+              defaultValue: optional default value
+              placeholder: Optional
+              validation:
+                description: Error message if validation fails
+                regex: abc[a-z]+
+            stringDropdown:
+              values:
+                - string 0
+                - string 1
+              defaultValueIndex:     # Omit if no default selection is desired.
+                value: 0
+              valueLabels:
+                string 0: Pretty string 0 name
+                strign 1: Pretty string 1 name
+            zoneDropdown:
+              defaultValue:          # Omit if no default selection is desired.
+                value: us-west1-a
