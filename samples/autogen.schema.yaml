@@ -76,10 +76,15 @@ singleVm:
     - metadataKey: my-metadata-key  # Must be unique among passwords.
       length: 8
       allowSpecialChars: false  # Optional. Defaults to false.
-      username: admin
       displayLabel: Admin  # Required if multiple passwords.
                            # For the one password case, defaults to
                            # 'Admin' if not specified.
+      # One of the following to specify a username:
+      # It could be a static string, or it could take the user-entered
+      # value from a specific deploy input field (see deployInput section).
+      username: admin
+      usernameFromDeployInputField: usernameInputField
+
     - metadataKey: mysql-password
       length: 8
       allowSpecialChars: false
