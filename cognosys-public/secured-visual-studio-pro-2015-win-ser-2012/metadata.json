@@ -1,0 +1,83 @@
+{
+  "icon": "visual-studio-professional-2015-on-windows-server-2012.png",
+
+
+  "solution": {
+    "active": true,
+    "hidden": false,
+    "marketingInfo": {
+      "categoryIds": [
+        "OTHERS"
+      ],
+      "description": "<p>With the sensitivity around application code, development machines connected to Enterprise TFS servers are the most protected instances. Such development servers need to be properly secured when being deployed. Server hardening process provides a solid edifice to build and deploy secure apps. These Instances are hardened based on Microsoft security baseline recommendations, Industry best practices and CIS hardening checklists.</p>\n\n<p> Enterprises planning to deploy Visual Studio Professional 2015 for production on GCP can use this specially hardened image of Visual Studio Professional 2015 on Windows Server 2016 and save on large development time and effort.Please reach out to our enterprise support team  for any deployment issues.</p>\n<p>\nVisual Studio Professional 2015 is an end-to-end solution for building and managing complex applications.</p>\n<p>\nVisual Studio 2015 contains many new and exciting features and IDE productivity enhancements to support Windows app development, cross-platform mobile development, web and cloud development, and more. It is used to develop computer programs for Microsoft Windows, as well as websites, web apps, web services and mobile apps. Visual Studio supports different programming languages and allows the code editor and debugger to support nearly any programming language, provided a language-specific service exists.</p>",
+      "documentations": [
+        {
+          "description": "Steps to get you started quickly including webroot path and port information.",
+          "destinations": [
+            "DESTINATION_SOLUTION_DETAILS",
+            "DESTINATION_POST_DEPLOY"
+          ],
+          "title": "Getting Started Guide",
+          "url": "https://secureanycloud.com/visual-studio-professional-technical-support-cloud-help-azure-aws-opensource-cognosys-2/?target=google"
+        },
+        {
+          "description": "How to connect to your instance with Admin rights",
+          "destinations": [
+            "DESTINATION_SOLUTION_DETAILS",
+            "DESTINATION_POST_DEPLOY"
+          ],
+          "title": "Connect to Your VM",
+          "url": "http://secureanycloud.com/google-cloud-connect-using-rdp-to-windows-instance-on-gcp/"
+        }
+      ],
+      "eulaUrl": "http://secureanycloud.com/end-user-license-agreement/",
+      "name": "Secured  Visual Studio Professional 2015 on Windows Server 2012 R2",
+      "packagedSoftwareGroups": [
+        {
+          "components": [
+            {
+              "name": "Windows Server",
+              "version": "2012 R2"
+            }
+          ],
+          "type": "SOFTWARE_GROUP_OS"
+        }
+      ],
+      "priceDescription": {},
+      "searchMetaDescription": "Hardened Visual Studio Professional 2015 on Windows Server 2012 R2",
+      "searchMetaKeywords": [
+        "Visual Studio Professional 2015 on Windows Server 2012 R2",
+		"Secured  Visual Studio Professional 2015",
+		"Visual Studio Professional 2015 on SecureAnyCloud",
+        "Visual Studio Professional 2015",
+        "Cognosys",
+        "Visual Studio Professional 2015 on GCP",
+        "Visual Studio Professional 2015 on Google cloud platform"
+      ],
+      "supportInfo": "<p>Support can be availed in following ways: \n<ul>\n<li> Send Email to Support@SecureAnyCloud.com </li>\n<li> Reach out to <a href=\"http://www.secureanycloud.com\">Live Support </a>  </li> \n</ul></p>",
+      "supportUrl": "http://secureanycloud.com/support/",
+      "tagline": "Hardened Visual Studio Professional 2015",
+    "url": "https://secureanycloud.com/visual-studio-professional-technical-support-cloud-help-azure-aws-opensource-cognosys-2/?target=google",
+      "userFacetBindings": [
+        {
+          "facetId": "category",
+          "facetValueId": "developer-stacks"
+        },
+        {
+          "facetId": "category",
+          "facetValueId": "developer-tools"
+        }
+      ],
+      "version": "1.0.7"
+    },
+    "partnerId": "cognosys-public",
+    "solutionId": "secured-visual-studio-pro-2015-win-ser-2012",
+    "solutionPublishedName": "cognosys-public/secured-visual-studio-pro-2015-win-ser-2012"
+  },
+  "solution_default_price": {
+    "useDynamicPricing": true
+  },
+  "solution_software_price_description": {
+    "entries": []
+  }
+}
