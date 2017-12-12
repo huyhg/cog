@@ -1,0 +1,113 @@
+multiVm:
+  tiers:
+  - name: servers
+    title: Servers Tier
+    bootDisk: &BOOT_DISK_SPEC
+      diskSize:
+        defaultSizeGb: 10
+        minSizeGb: 10
+      diskType:
+        defaultType: pd-standard
+    additional_disks:
+    - disk_size:
+        defaultSizeGb: 1000
+        minSizeGb: 10
+      diskType:
+        defaultType: pd-standard
+      name: data
+      displayLabel: Data disk
+    gceMetadataItems:
+    - key: is_mongodb_server
+      value: 'True'
+    - key: is_mongodb_arbiter
+      value: 'False'
+    - key: mongodb_servers
+      tier_vm_names:
+        tier: servers
+        all_vms:
+          delimiter: ' '
+    - key: mongodb_arbiters
+      tier_vm_names:
+        tier: arbiters
+        all_vms:
+          delimiter: ' '
+    - key: mongodb_replicaset_name
+      valueFromDeployInputField: replicaSetName
+    images: &IMAGE_SPEC
+    - name: mongodb-v20171022
+      project: click-to-deploy-images
+    instanceCount:
+      defaultValue: 2
+      list:
+        values: [1, 2, 3, 4, 5, 6]
+    machineType:
+      defaultMachineType:
+        gceMachineType: n1-highmem-4
+      minimum:
+        cpu: 1
+        ramGb: 1.69
+    applicationStatus: &WAITER_SPEC
+      type: WAITER
+      waiter:
+        waiterTimeoutSecs: 300
+    externalIp: &IP_SPEC
+      defaultType: EPHEMERAL
+
+
+  - name: arbiters
+    title: Arbiters Tier
+    bootDisk: *BOOT_DISK_SPEC
+    gceMetadataItems:
+    - key: is_mongodb_server
+      value: 'False'
+    - key: is_mongodb_arbiter
+      value: 'True'
+    - key: mongodb_servers
+      tier_vm_names:
+        tier: servers
+        all_vms:
+          delimiter: ' '
+    - key: mongodb_arbiters
+      tier_vm_names:
+        tier: arbiters
+        all_vms:
+          delimiter: ' '
+    - key: mongodb_replicaset_name
+      valueFromDeployInputField: replicaSetName
+    images: *IMAGE_SPEC
+    instanceCount:
+      defaultValue: 1
+      list:
+        values: [0, 1]
+    machineType:
+      defaultMachineType:
+        gceMachineType: n1-standard-1
+      minimum:
+        cpu: 1
+        ramGb: 1.69
+    applicationStatus: *WAITER_SPEC
+    externalIp: *IP_SPEC
+
+  deployInput:
+    sections:
+    - placement: MAIN
+      fields:
+      - name: replicaSetName
+        title: Replica set name
+        description: The replica set name for the MongoDB cluster.
+        required: True
+        stringBox:
+          placeholder: rs0
+          defaultValue: rs0
+
+  postDeploy:
+    actionItems:
+    - heading: Connect to the MongoDB primary server
+      description: Use the SSH button above to connect to the primary MongoDB server, or connect using the gcloud command below.
+      snippet: gcloud compute ssh --project {{ outputs().project }} {{ outputs().servers_vmName0 }}
+    - heading: Learn about MongoDB Cloud Manager
+      description: <a href="https://www.mongodb.com/cloud">MongoDB Cloud Manager</a> provides monitoring and alerts customized for MongoDB clusters.
+    connectButton:
+      tierVm:
+        tier: servers
+      display_label: SSH to a Servers Tier VM

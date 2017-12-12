@@ -1,0 +1,63 @@
+multiVm:
+  tiers:
+  - name: db
+    title: Cassandra
+    bootDisk:
+      diskSize:
+        defaultSizeGb: 10
+        minSizeGb: 10
+      diskType:
+        defaultType: pd-standard
+    additionalDisks:
+    - diskSize:
+        defaultSizeGb: 1000
+        minSizeGb: 10
+      diskType:
+        defaultType: pd-standard
+      name: data
+      displayLabel: Data disk
+    gceMetadataItems:
+    - key: cassandra_node_hostnames
+      tierVmNames:
+        tier: db
+        allVms:
+          delimiter: ' '
+    - key: cassandra_cluster_name
+      valueFromDeployInputField: clusterName
+    images:
+    - name: cassandra-v20171027
+      project: click-to-deploy-images
+    instanceCount:
+      defaultValue: 3
+      range:
+        startValue: 1
+        endValue: 30
+    machineType:
+      defaultMachineType:
+        gceMachineType: n1-highmem-4
+      minimum:
+        cpu: 1
+        ramGb: 3.75
+    applicationStatus:
+      type: WAITER
+      waiter:
+        waiterTimeoutSecs: 300
+    externalIp:
+      defaultType: EPHEMERAL
+
+  deployInput:
+    sections:
+    - placement: MAIN
+      fields:
+      - name: clusterName
+        title: Cluster Name
+        description: The name of the cluster. Prevents Cassandra nodes in one logical cluster from joining another.
+        required: True
+        stringBox:
+          placeholder: Test Cluster
+          defaultValue: Test Cluster
+
+  postDeploy:
+    actionItems:
+    - heading: Read the getting started guide
+      description: View the <a href="https://cassandra.apache.org/doc/latest/getting_started/index.html">Apache Documentation</a> (Start on configuring Cassandra).

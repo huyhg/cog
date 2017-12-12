@@ -1,0 +1,59 @@
+singleVm:
+  adminUrl:
+    path: wp-admin
+    scheme: HTTP
+  applicationStatus:
+    type: WAITER
+    waiter:
+      waiterTimeoutSecs: 300
+  bootDisk:
+    diskSize:
+      defaultSizeGb: 10
+      minSizeGb: 10
+    diskType:
+      defaultType: pd-standard
+  gceMetadataItems:
+  - key: wordpress-admin-email
+    valueFromDeployInputField: adminEmailAddress
+  deployInput:
+    sections:
+    - fields:
+      - name: adminEmailAddress
+        required: true
+        stringBox:
+          placeholder: user@example.com
+          testDefaultValue: user@example.com
+          validation:
+            description: Please enter a valid email address
+            regex: ^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\.-]+@[a-zA-Z0-9](?:[a-zA-Z0-9]?[.-]?[a-zA-Z0-9]+)+[[a-zA-Z0-9]{1}$
+        title: Administrator e-mail address
+        tooltip: The e-mail address used to create the administrator account for WordPress.
+      placement: MAIN
+  firewallRules:
+  - port: '80'
+    protocol: TCP
+  - defaultOff: true
+    port: '443'
+    protocol: TCP
+  images:
+  - name: wordpress-multisite-v20171206
+    project: click-to-deploy-images
+  machineType:
+    defaultMachineType:
+      gceMachineType: n1-standard-1
+    minimum:
+      cpu: 1
+      ramGb: 1.69
+  passwords:
+  - allowSpecialChars: false
+    displayLabel: Wordpress MySQL
+    length: 8
+    metadataKey: wordpress-mysql-password
+    username: wordpress
+  - allowSpecialChars: true
+    displayLabel: Wordpress Admin
+    length: 8
+    metadataKey: wordpress-admin-password
+    usernameFromDeployInputField: adminEmailAddress
+  siteUrl:
+    scheme: HTTP
