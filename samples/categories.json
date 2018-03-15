@@ -1,0 +1,136 @@
+{
+  "facets": [
+    {
+      "facetId": "category",
+      "name": "Category",
+      "values": [
+        {
+          "facetValueId": "advertising",
+          "name": "Advertising"
+        },
+        {
+          "facetValueId": "analytics",
+          "name": "Analytics"
+        },
+        {
+          "facetValueId": "big-data",
+          "name": "Big data"
+        },
+        {
+          "facetValueId": "blog-cms",
+          "name": "Blog & CMS"
+        },
+        {
+          "facetValueId": "climate",
+          "name": "Climate"
+        },
+        {
+          "facetValueId": "compute",
+          "name": "Compute"
+        },
+        {
+          "facetValueId": "crm",
+          "name": "CRM"
+        },
+        {
+          "facetValueId": "database",
+          "name": "Databases"
+        },
+        {
+          "facetValueId": "developer-stacks",
+          "name": "Developer stacks"
+        },
+        {
+          "facetValueId": "developer-tools",
+          "name": "Developer tools"
+        },
+        {
+          "facetValueId": "economics",
+          "name": "Economics"
+        },
+        {
+          "facetValueId": "email",
+          "name": "Email"
+        },
+        {
+          "facetValueId": "encyclopedic",
+          "name": "Encyclopedic"
+        },
+        {
+          "facetValueId": "firebase",
+          "name": "Firebase"
+        },
+        {
+          "facetValueId": "genomics",
+          "name": "Genomics"
+        },
+        {
+          "facetValueId": "google-cloud-apis",
+          "name": "Google Cloud APIs"
+        },
+        {
+          "facetValueId": "gsuite",
+          "name": "G Suite"
+        },
+        {
+          "facetValueId": "health",
+          "name": "Health"
+        },
+        {
+          "facetValueId": "machine-learning",
+          "name": "Machine learning"
+        },
+        {
+          "facetValueId": "maps",
+          "name": "Maps"
+        },
+        {
+          "facetValueId": "mobile",
+          "name": "Mobile"
+        },
+        {
+          "facetValueId": "monitoring",
+          "name": "Monitoring"
+        },
+        {
+          "facetValueId": "networking",
+          "name": "Networking"
+        },
+        {
+          "facetValueId": "os",
+          "name": "Operating systems"
+        },
+        {
+          "facetValueId": "public-safety",
+          "name": "Public safety"
+        },
+        {
+          "facetValueId": "science-research",
+          "name": "Science & research"
+        },
+        {
+          "facetValueId": "security",
+          "name": "Security"
+        },
+        {
+          "facetValueId": "social",
+          "name": "Social"
+        },
+        {
+          "facetValueId": "storage",
+          "name": "Storage"
+        },
+        {
+          "facetValueId": "youtube",
+          "name": "YouTube"
+        },
+        {
+          "facetValueId": "others",
+          "name": "Other"
+        }
+      ],
+      "type": "USER_BINDING"
+    },
+  ]
+}
+
