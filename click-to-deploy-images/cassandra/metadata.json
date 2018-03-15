@@ -1,0 +1,84 @@
+{
+  "icon": "cassandra.png",
+  "solution": {
+    "active": true,
+    "hidden": false,
+    "marketingInfo": {
+      "license_urls": [
+        {
+          "title": "Apache Cassandra",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+      ],
+      "description": "The Apache Cassandra database management system provides asynchronous masterless replication of large amounts of data across many servers, avoiding a single point of failure and reducing latency.",
+      "documentations": [
+        {
+          "destinations": [
+            "DESTINATION_SOLUTION_DETAILS",
+            "DESTINATION_CONFIGURATION",
+            "DESTINATION_POST_DEPLOY"
+          ],
+          "title": "DataStax Cassandra documentation",
+          "url": "https://docs.datastax.com/en/cassandra/3.0/"
+        },
+        {
+          "destinations": [
+            "DESTINATION_SOLUTION_DETAILS",
+            "DESTINATION_CONFIGURATION",
+            "DESTINATION_POST_DEPLOY"
+          ],
+          "title": "Apache documentation for Cassandra",
+          "url": "https://cassandra.apache.org/doc/latest/getting_started/index.html"
+        }
+      ],
+      "name": "Cassandra",
+      "packagedSoftwareGroups": [
+        {
+          "components": [
+            {
+              "name": "Debian",
+              "version": "9"
+            }
+          ],
+          "type": "SOFTWARE_GROUP_OS"
+        },
+        {
+          "components": [
+            {
+              "name": "OpenJDK",
+              "version": "1.8.0"
+            }
+          ]
+        }
+      ],
+      "priceDescription": {
+        "description": "Cassandra will be deployed in a cluster of Compute Engine instances. Each instance will use a boot disk and an additional data disk for storing database data."
+      },
+      "searchMetaDescription": "cassandra",
+      "searchMetaKeywords": [
+        "cassandra",
+        "nosql",
+        "database"
+      ],
+      "supportInfo": "Google does not offer support for this solution. However, community support is available on <a href=\"https://stackoverflow.com/questions/tagged/cassandra/\">Stack Overflow</a>. Additional support is available on <a href=\"https://cassandra.apache.org/community/\">community forums</a>.",
+      "tagline": "NoSQL database with masterless replication for high availability",
+      "url": "https://cassandra.apache.org/",
+      "userFacetBindings": [
+        {
+          "facetId": "category",
+          "facetValueId": "database"
+        }
+      ],
+      "version": "3.11.2"
+    },
+    "partnerId": "click-to-deploy-images",
+    "solutionId": "cassandra",
+    "solutionPublishedName": "click-to-deploy-images/cassandra"
+  },
+  "solution_default_price": {
+    "useDynamicPricing": true
+  },
+  "solution_software_price_description": {
+    "entries": []
+  }
+}
