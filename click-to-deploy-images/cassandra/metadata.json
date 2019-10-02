@@ -1,8 +1,6 @@
 {
   "icon": "cassandra.png",
   "solution": {
-    "active": true,
-    "hidden": false,
     "marketingInfo": {
       "license_urls": [
         {
@@ -75,10 +73,4 @@
     "solutionId": "cassandra",
     "solutionPublishedName": "click-to-deploy-images/cassandra"
   },
-  "solution_default_price": {
-    "useDynamicPricing": true
-  },
-  "solution_software_price_description": {
-    "entries": []
-  }
 }
